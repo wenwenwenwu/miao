@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 
 public class LinWxNotify {
 
+    //啦啦啦啦啦
     public static String readNotify(InputStream stream) {
         //缓存流的类
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
