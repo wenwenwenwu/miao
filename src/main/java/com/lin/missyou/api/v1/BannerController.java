@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 public class BannerController {
     @Autowired
     private BannerService bannerService;
-
     @GetMapping("/name/{name}")
     public Banner getByName(@PathVariable @NotBlank String name){
         Banner bannerEntityModel = bannerService.getBanner(name);
