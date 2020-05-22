@@ -27,6 +27,7 @@ public class ActivityController {
 
     @GetMapping("/name/{name}") //返回精简的activity
     public ActivityPureVO getHomeActivity(@PathVariable String name) {
+        System.out.println("miao");
         Activity activity = activityService.getByName(name);
         if (activity == null) {
             throw new NotFoundException(40001);
