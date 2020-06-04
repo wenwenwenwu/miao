@@ -9,12 +9,13 @@ import org.springframework.data.domain.Page;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DozerPaging<Raw, Target> extends Paging {
+
+public class DozerPaging<RawClass, Target> extends Paging {
 
     @SuppressWarnings("unchecked")
-    public DozerPaging(Page<Raw> rawPage, Class<Target> targetClass) {
+    public DozerPaging(Page<RawClass> rawPage, Class<Target> targetClass) {
         this.initPageParameters(rawPage);
-        List<Raw> rawList = rawPage.getContent();
+        List<RawClass> rawList = rawPage.getContent();
         Mapper mapper = DozerBeanMapperBuilder.buildDefault();
         List<Target> targetList = new ArrayList<>();
         rawList.forEach(rawItem -> {

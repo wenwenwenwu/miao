@@ -25,7 +25,7 @@ public class SpuController {
     @Autowired
     private SpuService spuService;
 
-    @GetMapping("detail/id/{id}")
+    @GetMapping("/id/{id}/detail")
     public Spu getDetail(@PathVariable @Positive(message = "{id.positive}") Long id){
         Spu spu = spuService.getSpu(id);
         if (spu == null){
