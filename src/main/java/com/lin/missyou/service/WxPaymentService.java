@@ -56,7 +56,7 @@ public class WxPaymentService {
         try {
             wxOrder = wxPay.unifiedOrder(params);
         } catch (Exception e) {
-            throw new ServerErrorException(9999);
+            throw new ServerErrorException(50012);
         }
         //微信下单成功
         if (this.unifiedOrderSuccess(wxOrder)) {
