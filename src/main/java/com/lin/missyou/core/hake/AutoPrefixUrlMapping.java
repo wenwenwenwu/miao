@@ -14,12 +14,15 @@ public class AutoPrefixUrlMapping extends RequestMappingHandlerMapping {
     @Override
     //根据方法获取路由信息的方法
     protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
+        //获得调用方法的RequestMapping对象，paths为/banner/test
         RequestMappingInfo mappingInfo = super.getMappingForMethod(method, handlerType);
         if (mappingInfo != null) {
+            //新建RequestMappingInfo对象，paths为/v1
             String prefix = this.getPrefix(handlerType);
-            //根据prefex字符串生成prefixMappingInfo
-            RequestMappingInfo prefixMappingInfo = RequestMappingInfo.paths(prefix).build();
-            //和原来的mappingInfo组合成新的mappingInfo
+            RequestMappingInfo prefixMappingInfo = RequestMappingInfo
+                    .paths(prefix)
+                    .build();
+            //合并成新的mappingInfo对象返回，path为/v1/banner/test
             return prefixMappingInfo.combine(mappingInfo);
         }
         return mappingInfo;
@@ -27,7 +30,7 @@ public class AutoPrefixUrlMapping extends RequestMappingHandlerMapping {
 
     private String getPrefix(Class<?> handlerType) {
         String packageName = handlerType.getPackage().getName();//com.wu.miao.api.v1
-        String dotPath = packageName.replaceAll(this.apiPackagePath, "");//this.apiPackagePath = com.wu.miao.api
-        return dotPath.replace(".", "/");
+        String dotPath = packageName.replaceAll(this.apiPackagePath, "");//.v1
+        return dotPath.replace(".", "/");///v1
     }
 }

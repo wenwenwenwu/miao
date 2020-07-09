@@ -129,7 +129,7 @@ public class OrderService {
         String key = uid.toString()+","+oid.toString()+","+couponId.toString();
         //不一定成功，redis当机或者网络环境不好
         try{
-            //keyEvent事件只返回key，value不重要随便设
+            //keyEvent事件只返回key、value(不重要设为1)、过期时间、过期时间单位
             stringRedisTemplate.opsForValue().set(key,"1",this.payTimeLimit, TimeUnit.SECONDS);
         } catch (Exception e){
             //不抛出异常，会导致所有用户无法下单
